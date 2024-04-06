@@ -1,29 +1,27 @@
-const SvgSearch = (props) => (
+const SvgArrowUp = (props) => (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="1em"
           height="1em"
           fill="none"
-          viewBox="0 0 24 24"
+          viewBox="0 0 8 8"
           {...props}
         >
-          <circle
-            cx={11}
-            cy={11}
-            r={8}
-            stroke="currentcolor"
+          <path
+            stroke="#0CCF0C"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={1.5}
+            strokeMiterlimit={10}
+            d="M6.027 3.19 4.004 1.167 1.98 3.19"
           />
           <path
-            stroke="currentcolor"
+            stroke="#0CCF0C"
             strokeLinecap="round"
             strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="m16.5 16.958 5 5"
+            strokeMiterlimit={10}
+            d="M4 6.833v-5.61"
+            opacity={0.4}
           />
         </svg>
       );
-
-      export default SvgSearch;
+      export default SvgArrowUp;

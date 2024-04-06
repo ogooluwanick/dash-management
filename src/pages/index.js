@@ -4,12 +4,17 @@ import { SvgMessage, SvgSearch, SvgShape, SvgThumbsDown } from "@/icons";
 import Image from "next/image";
 import { useContext } from "react";
 import moment  from "moment";
+import { useRouter } from "next/router";
 
 
 
 export default function Home() {
-
+        const router = useRouter()
         const { scrollPos } = useContext(Store)
+
+        const handleSearch =  () =>{
+                router.push("/listings")
+        }
 
   return (
         <MotionWrap>
@@ -23,11 +28,12 @@ export default function Home() {
 
                                         <div className="formController mb-[20px] max-w-[557px]" >
                                                 <div className={`form_input `}>
-                                                        <SvgSearch id="svgleft"/>
+                                                        <SvgSearch id="svgleft" className="!text-[#0D2159]"/>
                                                         <input type="text" placeholder="Enter Address" />
                                                 </div>
                                         </div>
-                                        <div className="primary_btn primary max-w-[150px]">Search</div>
+                                        
+                                        <div className="primary_btn primary max-w-[150px]" onClick={()=>{handleSearch()}}>Search</div>
                                 </div>
 
 
