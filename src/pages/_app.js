@@ -1,4 +1,8 @@
+import { Layout } from "@/components";
 import { StoreProvider } from "@/context/Store";
+import { AnimatePresence } from "framer-motion";
+import { useRouter } from "next/router";
+import { DefaultSeo } from "next-seo";
 import "@/styles/globals.scss";
 
 export default function App({ Component, pageProps }) {
@@ -45,10 +49,15 @@ export default function App({ Component, pageProps }) {
                 },
                 ],
         };
-  return
+  return(
         <StoreProvider>
+               <Layout>
+                       <DefaultSeo {...DefaultSeoConfig}  />
 
-                <Component {...pageProps} />;
+                        <AnimatePresence exitBeforeEnter  initial={false}  onExitComplete={() => window.scrollTo(0, 0)}>
+                                <Component {...pageProps} key={router.asPath} />;
+                        </AnimatePresence>
+               </Layout>
         </StoreProvider>
-
+)
 }

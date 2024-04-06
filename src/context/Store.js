@@ -61,7 +61,7 @@ export function StoreProvider({ children }) {
                 };
         }, []);
         
-        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, socket, sideToggle, setSideToggle};
+        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, sideToggle, setSideToggle};
 
         return <Store.Provider value={value}>{children}</Store.Provider>;
 }
