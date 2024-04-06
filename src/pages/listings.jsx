@@ -1,11 +1,12 @@
 import { MotionWrap } from '@/components'
-import { SvgMessage, SvgMessageStroke, SvgShape, SvgThumbDownStroke, SvgThumbsDown, SvgThumbsUpStroke } from '@/icons'
+import { SvgMessageStroke, SvgThumbDownStroke, SvgThumbsUpStroke } from '@/icons'
 import moment from 'moment'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
 
 const Listings = () => {
+        const [showComment, setShowComment] = useState(0)
   return (
         <MotionWrap>
                 <div className="flex  gap-8 min-h-[90vh] relative pb-6 mt-[220px]" >
@@ -32,7 +33,7 @@ const Listings = () => {
                                         {avater:"https://i.pinimg.com/474x/b1/ff/f9/b1fff90b8b149719a65e326447b7e0bb.jpg", name:"James T.", createdAt:"2024-01-18T20:18:21.916+00:00", location:"Ikate, Ojo", rating:1, category:"network", color:"pink",  text:"There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are lots stores and Supermarkets." },
                                 ].map((review,i)=>(
                                 <>
-                                        <div className="review" key={i}>
+                                        <div className="review" key={i} onClick={()=>setShowComment(i)}>
                                                 <div className="review_head" >   
                                                         <Image src={review.avater} alt="review user" height={25} width={25}/>
                                                         <div className="head_info">
@@ -55,6 +56,21 @@ const Listings = () => {
                                                                 <SvgMessageStroke className="w-[14px] h-[14px]"/> <span>24</span>
                                                         </div>
                                                 </div>
+
+                                                {
+                                                        showComment == i &&
+                                                        <>
+
+                                                                <hr className='mt-4' />
+
+                                                                <section className="app__flex pt-[13px] -mb-[16px] gap-3">
+                                                                        <input className='flex-1 text-[14px] leading-[16px] outline-0' type="text" placeholder='Add a comment' />
+                                                                        <button className="primary_btn primary !px-3 !py-[5.5px] !w-fit font-medium text-[16px]">POST</button>
+                                                                </section>
+
+                                                        </>
+                                                        
+                                                }
                                         </div>
                                         <hr className='' />
                                 </>
