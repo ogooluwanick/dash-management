@@ -3,10 +3,7 @@ import { AnimatePresence,  motion } from 'framer-motion';
 import useOnclickOutside from "react-cool-onclickoutside";
 import usePlacesAutocomplete, { getGeocode, getLatLng, } from "use-places-autocomplete";
 
-
-
 import {  SvgLocation, SvgSearch } from '../icons';
-
 
 
 const PlacesDrop = ({place,setPlace, isLoaded ,loadError, label="" }) => {

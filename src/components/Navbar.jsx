@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { Store } from '@/context/Store'
-import { SvgSearch } from '@/icons'
-import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import Image from 'next/image'
 import { CiBookmark, CiShare2 } from "react-icons/ci";
 import { IoIosArrowForward } from "react-icons/io";
-import Image from 'next/image'
+
+import { SvgSearch } from '@/icons'
+import { Store } from '@/context/Store'
 
 
 const Navbar = () => {
@@ -15,7 +16,6 @@ const Navbar = () => {
         let isListing = router.asPath.includes("/listings")
 
         const [showUser, setShowUser] = useState(true)
-
 
   return (
     <div className={`navbar top-0 left-1/2 transform -translate-x-1/2 px-4 ${scrollPos >= 5  && "blur_navbar"   } ${isListing && "listing_variant "}`}>
@@ -41,7 +41,7 @@ const Navbar = () => {
                         showUser ?
                         <button  className="text-[14px] font-semibold  text-[#557FF2] transition transition-250 hover:opacity-40"  onClick={()=>setShowUser(val=>!val)}>Login</button>
                         :
-                        <div className="app__flex gap-3" onClick={()=>setShowUser(val=>!val)}>
+                        <div className="app__flex gap-3 cursor-pointer" onClick={()=>setShowUser(val=>!val)}>
                                 <p className="font-medium ">Welcome!</p>
                                 <Image className='min-w-9 w-9   min-h-9 h-9 rounded-full object-cover ' src={"https://i.pinimg.com/474x/01/b1/63/01b1636fb3a38c24241d1edfe6bbf863.jpg"} alt='user avater' width={36} height={36}/>
                         </div>

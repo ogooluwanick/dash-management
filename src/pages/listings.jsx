@@ -1,15 +1,15 @@
 import React, { useContext, useState } from 'react'
-import { CustomModal, MotionWrap, Rating } from '@/components'
-import { SvgMessageStroke, SvgThumbDownStroke, SvgThumbsUpStroke } from '@/icons'
 import { AnimatePresence } from 'framer-motion'
 import moment from 'moment'
 import Image from 'next/image'
 import { AiFillStar } from 'react-icons/ai'
-import { Store } from '@/context/Store'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form';
 
+import { SvgMessageStroke, SvgThumbDownStroke, SvgThumbsUpStroke } from '@/icons'
+import { CustomModal, MotionWrap, Rating } from '@/components'
+import { Store } from '@/context/Store'
 
 const Listings = () => {
         const { register, handleSubmit , formState:{errors} ,watch, setValue} = useForm();

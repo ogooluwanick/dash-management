@@ -23,7 +23,6 @@ export function StoreProvider({ children }) {
         const [state, dispatch] = useReducer(reducer, initialState);
         const [scrollPos, setScrollPos] = useState(0);
         const [screen, setScreen] = useState(0)
-        const [sideToggle, setSideToggle] = useState(screen>901 ? true : false)
         const [reviewModal, setReviewModal] = useState(false)
         const [allReviews, setAllReviews] = useState([
                 {avater:"https://i.pinimg.com/564x/74/d4/e2/74d4e2fc85d73a4b2512f8e1d0170790.jpg", name:"James Smart", createdAt:"2022-01-18T20:18:21.916+00:00", location:"Ikate, Lekki", rating:3, category:"water", color:"blue",  text:"There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are lots stores and Supermarkets." },
@@ -45,7 +44,6 @@ export function StoreProvider({ children }) {
                 {avater:"https://i.pinimg.com/474x/d3/cb/da/d3cbdae299e356990de95dd59852eeaf.jpg", name:"Ron Ibram", createdAt:"2026-02-18T20:18:21.916+00:00", location:"Abj, Magu", rating:1.5, category:"efcc", color:"red",  text:"There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are lots stores and Supermarkets." },
                 {avater:"https://i.pinimg.com/474x/b1/ff/f9/b1fff90b8b149719a65e326447b7e0bb.jpg", name:"James T.", createdAt:"2024-01-18T20:18:21.916+00:00", location:"Ikate, Ojo", rating:1, category:"network", color:"pink",  text:"There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are lots stores and Supermarkets." },
         ])
-
 
          // refresh props!
         const refreshData = () => {
@@ -81,7 +79,7 @@ export function StoreProvider({ children }) {
                 };
         }, []);
         
-        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, sideToggle, setSideToggle, reviewModal, setReviewModal, allReviews, setAllReviews};
+        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, reviewModal, setReviewModal, allReviews, setAllReviews};
 
         return <Store.Provider value={value}>{children}</Store.Provider>;
 }

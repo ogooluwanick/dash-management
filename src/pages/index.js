@@ -1,12 +1,12 @@
-import { MotionWrap, PlacesDrop, Rating } from "@/components";
-import { Store } from "@/context/Store";
-import { SvgMessage, SvgShape, SvgThumbsDown } from "@/icons";
-import Image from "next/image";
 import { useContext, useState } from "react";
+import Image from "next/image";
 import moment  from "moment";
 import { useRouter } from "next/router";
 import { useGoogleMapsScript } from 'use-google-maps-script'
 
+import { MotionWrap, PlacesDrop, Rating } from "@/components";
+import { Store } from "@/context/Store";
+import { SvgMessage, SvgShape, SvgThumbsDown } from "@/icons";
 
 
 export default function Home() {
@@ -40,7 +40,6 @@ export default function Home() {
                                         
                                         <div className="primary_btn primary max-w-[150px]" onClick={()=>{handleSearch()}}>Search</div>
                                 </div>
-
 
                                 <div className="review_rolls flex-[2] h-[90vh]  ">
                                         <div className="row ">

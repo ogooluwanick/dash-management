@@ -1,8 +1,9 @@
-import { Layout } from "@/components";
-import { StoreProvider } from "@/context/Store";
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
+
+import { Layout } from "@/components";
+import { StoreProvider } from "@/context/Store";
 import "@/styles/globals.scss";
 
 export default function App({ Component, pageProps }) {

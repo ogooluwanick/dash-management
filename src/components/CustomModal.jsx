@@ -1,7 +1,8 @@
 import React, { useContext, useEffect  } from 'react'
+import useOnclickOutside from 'react-cool-onclickoutside'
 import { motion } from "framer-motion"
 import PropTypes from 'prop-types';
-import useOnclickOutside from 'react-cool-onclickoutside'
+
 import { Store } from '@/context/Store';
 
 
