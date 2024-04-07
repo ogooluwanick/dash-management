@@ -1,6 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import { useRouter } from "next/router";
 import { DefaultSeo } from "next-seo";
+import { Toaster } from 'react-hot-toast';
 
 import { Layout } from "@/components";
 import { StoreProvider } from "@/context/Store";
@@ -54,6 +55,7 @@ export default function App({ Component, pageProps }) {
         <StoreProvider>
                <Layout>
                        <DefaultSeo {...DefaultSeoConfig}  />
+                        <Toaster />      
 
                         <AnimatePresence exitBeforeEnter  initial={false}  onExitComplete={() => window.scrollTo(0, 0)}>
                                 <Component {...pageProps} key={router.asPath} />;

@@ -21,7 +21,7 @@ export default function Home() {
         const [place, setPlace] = useState({address:"", city : '', country:"" ,lat:null, lng:null})
 
         const handleSearch =  () =>{
-                router.push(`/listings?address=${place.address}`)
+                router.push(`/listings${place.address ? `?address=${place.address}` : ""}`)
         }
 
   return (

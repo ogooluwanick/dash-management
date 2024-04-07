@@ -10,6 +10,7 @@ import { useForm } from 'react-hook-form';
 import { SvgMessageStroke, SvgThumbDownStroke, SvgThumbsUpStroke } from '@/icons'
 import { CustomModal, MotionWrap, Rating } from '@/components'
 import { Store } from '@/context/Store'
+import { customToast } from '@/lib/custom'
 
 const Listings = () => {
         const { register, handleSubmit , formState:{errors} ,watch, setValue} = useForm();
@@ -32,6 +33,7 @@ const Listings = () => {
                         setValue("category","")
                         setValue("review","")
                         setInputRating(input=>({...input,val:0}))
+                        customToast("Review submitted", "success")
                 }, 1500);
         }
 
