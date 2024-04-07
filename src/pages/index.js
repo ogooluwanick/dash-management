@@ -1,44 +1,49 @@
-import { MotionWrap, Rating } from "@/components";
+import { MotionWrap, PlacesDrop, Rating } from "@/components";
 import { Store } from "@/context/Store";
-import { SvgMessage, SvgSearch, SvgShape, SvgThumbsDown } from "@/icons";
+import { SvgMessage, SvgShape, SvgThumbsDown } from "@/icons";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import moment  from "moment";
 import { useRouter } from "next/router";
+import { useGoogleMapsScript } from 'use-google-maps-script'
 
 
 
 export default function Home() {
         const router = useRouter()
         const { scrollPos } = useContext(Store)
+        const [libraries, setLibraries] = useState(['places']);
+        const { isLoaded, loadError } = useGoogleMapsScript({
+                googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLEPLACE_KEY ?? "",
+                libraries
+        });
+
+        const [place, setPlace] = useState({address:"", city : '', country:"" ,lat:null, lng:null})
 
         const handleSearch =  () =>{
-                router.push("/listings")
+                router.push(`/listings?address=${place.address}`)
         }
 
   return (
         <MotionWrap>
                 <div className=" h-[200vh] relative">
-                        <section className="app__flex !justify-between gap-8 fixed w-[100vw] max-w-[1240px]">
+                        <section className="fixed_hero app__flex !justify-between gap-8 fixed  max-w-[1240px]  h-[90vh]">
 
-                                <div className="flex-[3]"> 
-                                        <h1 className="max-w-[504px] text-[64px] leading-[77.45px] mb-[40px]">Find a place you will love to live!</h1>
+                                <div className="hero_content flex-[3] "> 
+                                        <h1 className="text-[40px] leading-[48px] mb-4 font-bold max-w-[504px] sm:text-[64px] sm:leading-[77.45px] sm:mb-[40px]">Find a place you will love to live!</h1>
 
-                                        <p className="max-w-[504px] text-2xl leading-[30px] mb-[40px]">See through the lenses of people who have lived or visited the neighbourhood you might have in mind.</p>
+                                        <p className="text-[16px] leading-[25px] mb-6 max-w-[504px] sm:text-2xl sm:leading-[30px] sm:mb-[40px]">See through the lenses of people who have lived or visited the neighbourhood you might have in mind.</p>
 
-                                        <div className="formController mb-[20px] max-w-[557px]" >
-                                                <div className={`form_input `}>
-                                                        <SvgSearch id="svgleft" className="!text-[#0D2159]"/>
-                                                        <input type="text" placeholder="Enter Address" />
-                                                </div>
-                                        </div>
+
+                                        <PlacesDrop place={place} setPlace={setPlace}  isLoaded={isLoaded} loadError={loadError} key={"PlacesDrop" + Math.random(0, 2)} />       
+
                                         
                                         <div className="primary_btn primary max-w-[150px]" onClick={()=>{handleSearch()}}>Search</div>
                                 </div>
 
 
-                                <div className="review_rolls flex-[2] h-[90vh]">
-                                        <div className="row">
+                                <div className="review_rolls flex-[2] h-[90vh]  ">
+                                        <div className="row ">
                                                 <section style={{
                                                         transform: `translateY(${-( scrollPos)}px)`, 
                                                         transition: 'transform 0.5s ease-out', 

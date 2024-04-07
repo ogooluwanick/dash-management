@@ -7,7 +7,7 @@
 
 :root {
         --primary-blue : #3366FF ;
-        --black-main : #090909 ;
+        --black-main : #1E1E1E ;
         --gray-main : #D2CFD1 ;
 
 
@@ -17,6 +17,9 @@
         --blue-4 : #EBF4FE ;
         --blue-6 : #F5F9FF ;
         --blue-5 : #4391FE ;
+
+        --red-4 : #FF0000 ;
+
 }
 
 html,body, * {
@@ -25,6 +28,7 @@ html,body, * {
         font-family: 'Inter', sans-serif;
         box-sizing: border-box !important;         
         scroll-behavior: smooth !important;
+        color: var(--black-main);
 }
 
 svg{
@@ -404,7 +408,53 @@ h6, .label_l{
                 stroke:#0D2159;
         }
 
+        .categoryUl{
+                position: absolute;
+                list-style-type: none;
+                top: 3.6rem;
+                padding: .3rem .3rem !important;
+                width: 100%;
+                max-height: 150px;
+                overflow:scroll;
+                z-index: 5;
 
+                background-color: #fff;
+                box-shadow: 0 12px  32px 0 rgba(0, 0, 0, 0.08);
+
+
+                border: 1px solid #E8E8E8;
+                border-radius: 0 0 5px 5px;
+
+                label{
+                        color: #ccc;
+                        font-weight: 450;
+                }
+                li{
+                        cursor: pointer;
+                        padding: 5px 14px ;
+                        font-size: 14px;
+                        line-height: 20px;
+                        transition: all .2s ease-in-out;
+                        color: var(--);
+                        border-radius: 2px;
+                        
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        
+                        svg{
+                                height: 18px;
+                                min-height: 18px;
+                                width: 18px;
+                                min-width: 18px;
+                        }
+
+                        &:hover, &:focus{
+                                opacity: .4;
+                        }
+
+                }
+        }
        
 }
 
@@ -443,6 +493,82 @@ h6, .label_l{
         align-items: center;
 }
 
+.modalOverlay{
+        width: 100vw;
+        height: 100%;
+        background: rgba(29, 48, 69, 0.98);
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 120    !important;
+        transition: all .3s ease-in-out;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
+
+.modalBox{
+        z-index: 10    !important;
+        background-color: #fafcfd;
+        border: 1px solid #E6E5E6;
+        padding: 24px;
+        border-radius: 8px;
+        
+        width: 60%;
+        
+
+        @media screen and (max-width:950px) {
+                max-width: none;
+                width: 85%;
+        }
+
+        @media screen and (max-width:800px) {
+                max-width: none;
+                width: 95%;
+        }
+        
+        @media screen and (max-width:675px) {
+                padding: 16px;
+        }
+
+
+
+
+        >nav{
+                display: flex !important; 
+                justify-content: space-between;
+                align-items: center;
+                gap: 15px;
+                
+                margin-bottom: 16px;
+
+                h5{
+                        overflow: hidden;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;     
+                        font-weight: 500;
+                        font-size: 18px;
+                        line-height: 24px;
+                        width: 100%;
+                        text-align: center;
+                }
+        }
+       
+
+        >section{
+                min-height: 8rem;
+                max-height: 85vh;
+                overflow-y: scroll;
+        }
+
+
+}
+
+.fixed_hero{
+        width: calc( 100% - 32px ) !important;
+}
+
 .navbar{
 
         position: fixed;
@@ -473,14 +599,32 @@ h6, .label_l{
         }
 }
 
+
 .review_rolls{
         position: relative;
         background-color: #e9ebec;
         padding: 2px;
         overflow: hidden;
+        min-width: 506px;
+
         
         display: flex;
         gap: 18px;
+
+        @media screen and (max-width:675px) {
+                display: none;
+        }
+
+        @media screen and (max-width:1000px) {
+                min-width: unset;
+                width: 100%;
+                max-width: 240px;
+                .row{
+                        &:first-of-type{
+                                display: none;
+                        }
+                }
+        }
 
         .row{
                 position: relative;
@@ -491,6 +635,13 @@ h6, .label_l{
                         display: flex;
                         flex-direction: column;
                         gap: 18px;
+                }
+
+                &:first-of-type{
+                        @media screen and (max-width:1000px) {
+                                
+                                display: none;
+                        }
                 }
         }
 
@@ -580,6 +731,7 @@ h6, .label_l{
                         }
                 }
         }
+
 }
 
 .threads{
@@ -684,6 +836,35 @@ h6, .label_l{
         gap: 16px; 
         height: fit-content;
 
+        @media screen and (max-width:768px) {
+                position: relative;
+                top: 0;
+
+                display: grid; 
+                grid-template-columns: 160px 160px 160px; 
+                grid-template-rows: 110px 110px; 
+                grid-template-areas: 
+                "main sub1 main2"
+                "main sub2 main2"; 
+                gap: 8px; 
+                overflow-x: scroll;
+
+                :nth-child(1) { grid-area: main; width: 100%; height: 100%; }
+                :nth-child(2)  { grid-area: sub1; width: 100%;}
+                :nth-child(3)  { grid-area: sub2; width: 100%;}
+                :nth-child(4)  { grid-area: main2; width: 100%; }
+
+                div{
+                        max-height: none !important;
+
+                        img{
+                                max-height:none !important;
+                        }
+                }
+
+
+        }
+
         div{
                 background-color: #ccc;
                 border-radius: 8px;
@@ -704,6 +885,7 @@ h6, .label_l{
                         position: absolute;
                         color: white;
                         white-space: nowrap;
+                        text-align: center;
                         z-index: 1;
                         top: 50%;
                         left: 50%;

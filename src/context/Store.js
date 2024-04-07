@@ -24,7 +24,7 @@ export function StoreProvider({ children }) {
         const [scrollPos, setScrollPos] = useState(0);
         const [screen, setScreen] = useState(0)
         const [sideToggle, setSideToggle] = useState(screen>901 ? true : false)
-
+        const [reviewModal, setReviewModal] = useState(false)
 
 
          // refresh props!
@@ -61,7 +61,7 @@ export function StoreProvider({ children }) {
                 };
         }, []);
         
-        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, sideToggle, setSideToggle};
+        const value = { state, dispatch,theme, setTheme, refreshData, scrollPos ,screen, setScreen, sideToggle, setSideToggle, reviewModal, setReviewModal};
 
         return <Store.Provider value={value}>{children}</Store.Provider>;
 }

@@ -1,15 +1,39 @@
-import { MotionWrap } from '@/components'
+import React, { useContext, useState } from 'react'
+import { CustomModal, MotionWrap, Rating } from '@/components'
 import { SvgMessageStroke, SvgThumbDownStroke, SvgThumbsUpStroke } from '@/icons'
+import { AnimatePresence } from 'framer-motion'
 import moment from 'moment'
 import Image from 'next/image'
-import React, { useState } from 'react'
 import { AiFillStar } from 'react-icons/ai'
+import { Store } from '@/context/Store'
+import { IoIosArrowDown } from 'react-icons/io'
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form';
+
 
 const Listings = () => {
+        const { register, handleSubmit , formState:{errors} ,watch} = useForm();
+        const { reviewModal, setReviewModal } = useContext(Store)
+        const router = useRouter()
+
         const [showComment, setShowComment] = useState(0)
+        const [inputRating, setInputRating] = useState({active: true, val: 0})
+        const [loading, setLoading] = useState(false)
+        
+        
+        const submitHandler = async ({ email, password,fname, lname,phone }) => {
+                setLoading(true)
+
+                setTimeout(() => {
+                        setLoading(false)
+
+                }, 1500);
+        }
+
+
   return (
         <MotionWrap>
-                <div className="flex  gap-8 min-h-[90vh] relative pb-6 mt-[220px]" >
+                <div className="flex flex-col-reverse  gap-8 min-h-[90vh] relative pb-6 mt-[310px] md:mt-[220px] md:flex-row " >
                         <div className="threads flex-[3] flex flex-col gap-4">
                         {
                                 [
@@ -97,6 +121,62 @@ const Listings = () => {
                                 </div>
                         </div>
                 </div>
+                
+                <AnimatePresence exitBeforeEnter >
+                        {
+                                reviewModal && (
+                                <section className='viewModal'>
+                                        <CustomModal
+                                                heading={"Review Location"}
+                                                modalOpen={reviewModal}
+                                                setModalOpen={setReviewModal}
+                                                modalWidth={"700px"}
+                                        >
+                                                <form onSubmit={handleSubmit(submitHandler)}>
+                                                        <p className="font-medium text-[20px] leading-6 mb-6 truncate">{router.query.address ? router.query.address : "Bonny and Clyde Street, Ajao Estate, Lagos"}</p>
+
+                                                        <div className="formController mb-[16px] " >
+                                                                <div className={`form_input `}>
+                                                                        <select className='!border-0 !outline-none !py-[17px] !px-[16px]'  name='category' id='category'  {...register("category", {required:"A category is required. 😭"})}  >
+                                                                                <option value="">Select Amenities</option>
+                                                                                {
+                                                                                        ["Schools","Hospitals","Resort Park","Shopping Malls","Airport","Train Station","Nightlife","Public Wifi","Parking Lot","Security","Quiet","Bus Station","Public Transport"]
+                                                                                        .map((item,i)=>(
+                                                                                                <option value={item} key={i}>{item}</option>
+                                                                                        ))
+                                                                                }
+                                                                        </select>
+                                                                        <IoIosArrowDown id="svgright" color="#8F95B2" className=" !text-[#8F95B2]" />
+                                                                </div>
+                                                                <span className='desc warn' >{ errors.category && errors.category.message }</span>
+                                                        </div>
+
+                                                        <h5 className="font-medium text-[14px] mb-[14px] leading-[16px]">Rate location</h5>
+                                                        <Rating input={inputRating} setInput={setInputRating} color='rgba(255, 199, 0, 0.4)' />
+
+                                                        <div className="formController mt-6" >
+                                                                <label htmlFor="" className='text-[14px] !text-[#1E1E1E]'>Write Review</label>
+                                                                <div className={`form_input `}>
+                                                                        <textarea placeholder="Placeholder" id='review' name='review' className='min-h-[173px] !max-h-[200px] !p-3 !bg-[#FBFAFC]' {...register("review", {required:"Give us two cents. 😭"})} />
+                                                                </div>
+                                                                <span className='desc warn' >{ errors.review && errors.review.message }</span>
+                                                        </div>
+
+                                                        <div className="flex items-center gap-2 mt-4 mb-6 w-fit">
+                                                                <input type="checkbox" className='accent-[#3869ff]' id="anonymous-checkbox"/>
+                                                                <label for="anonymous-checkbox" className='text-[14px] leading-[16.94px]'>Post as Anonymous</label>
+                                                        </div>
+
+                                                        <div className="flex gap-6">
+                                                                <button className="primary_btn primary" disabled={loading || (!watch("category") || !watch("review"))} type='submit' >SUBMIT</button>
+                                                                <button className="primary_btn secondary" onClick={()=>setReviewModal(false)}>CANCEL</button>
+                                                        </div>
+                                                </form>
+                                        </CustomModal>
+                                </section >
+                                )
+                        }
+                </AnimatePresence>
         </MotionWrap>
   )
 }

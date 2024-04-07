@@ -43,7 +43,7 @@ const Rating = ({ rating, text, color, input, setInput }) => {
         )
 }
 
-const Star = ({ value, filled, onClick, color }) => {
+const Star = ({ value, filled, onClick, color,key }) => {
         const handleClick = () => {
                 onClick(value);
         };
@@ -52,6 +52,7 @@ const Star = ({ value, filled, onClick, color }) => {
                 <span
                         style={{ cursor: 'pointer' }}
                         onClick={handleClick}
+                        key={key}
                 >
                         {filled ? <AiFillStar style={{ color, fontSize: "23px" }} aria-label='star'/> : <AiOutlineStar style={{ color, fontSize: "23px" }} aria-label='empty-star'/>}
                 </span>
@@ -75,7 +76,6 @@ Star.defaultProps = {
 
 Star.propTypes = {
         rating: PropTypes.number.isRequired,
-        text: PropTypes.string.isRequired,
         color: PropTypes.string
 }
 
