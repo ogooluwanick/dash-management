@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }) {
                         description: "SPOTTA, your one stop spot",
                         images: [
                                 {
-                                        url: '/spotta_icon.png', // Default image URL
+                                        url: '/dash_bg.png', // Default image URL
                                         width: 1280,
                                         height: 640,
                                         alt: "SPOTTA",
